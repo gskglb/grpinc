@@ -1,0 +1,56 @@
+<template name="createProposal">
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Proposal Creation Screen
+            <small>Optional description</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+            <li class="active">Here</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">New Proposal</h3>
+            </div>
+          <div class="box-body">
+            <!--
+            {{> quickForm collection="Proposals" id="insertProposalForm" type="insert" omitFields="createdAt, updatedAt"}}
+            -->
+            {{> insertProposalFormTemplate}}
+          </div>
+        </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+</template>
+
+<template name="insertProposalFormTemplate">
+  {{flash}}
+  {{#autoForm schema="ProposalSchema" collection="Proposals" id="insertProposalForm" type="insert"}}
+    <fieldset>
+          {{> afQuickField name='status' value="DRAFT PROPOSAL" readonly=true}} 
+        <div class="form-group {{#if afFieldIsInvalid name='incType'}}has-error {{/if}}" >
+          {{> afQuickField name='incType' autofocus='' options=incTypes}}
+          <span class="help-block">{{afFieldMessage name='summary'}}</span>
+        </div>
+        
+        <div class="form-group {{#if afFieldIsInvalid name='summary'}}has-error {{/if}}" >
+          {{> afQuickField name='summary'}}
+          <span class="help-block">{{afFieldMessage name='summary'}}</span>
+        </div>
+        <div class="form-group {{#if afFieldIsInvalid name='details'}}has-error {{/if}}" >
+          {{> afQuickField name='details'  rows=5}}
+          <span class="help-block">{{afFieldMessage name='details'}}</span>
+        </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Create Proposal</button>
+
+  {{/autoForm}}
+         
+</template>

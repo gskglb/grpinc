@@ -8,7 +8,8 @@ Router.route('/dashboard', {
 });
 
 Router.route('/view-proposals', {
-  name: 'view-proposals'
+  name: 'view-proposals',
+  controller : 'ViewProposalsController'
 });
 
 Router.route('/create-proposal', {

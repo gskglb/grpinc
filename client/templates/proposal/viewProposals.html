@@ -1,0 +1,51 @@
+<template name="viewProposals">
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+           View Proposals
+            <small>Optional description</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li class="active">View Proposals</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="box box-info">
+
+          <div class="box-body">
+            <div class="box-body table-responsive">
+              <table class="table table-hover table-bordered table-striped">
+                <tr>
+                  <th width="20%">Proposal ID</th>
+                  <th width="40%">Summary</th>
+                  <th width="20%">Status</th>
+                  <th width="20%">Action</th>
+                  
+                </tr>
+                {{#each proposals}}  
+                  <tr>
+                      <td>{{_id}}</td>
+                      <td>{{summary}}</td>
+                      <td>{{status}}</td>
+                      <td>
+                        <a href="/view/{{_id}}"><i class="fa fa-eye"></i></a> 
+                        &nbsp; 
+                        <a href="/edit/{{_id}}"><i class="fa fa-pencil"></i></a>
+                        &nbsp; 
+                        <a href="/delete/{{_id}}"><i class="fa fa-edit"></i></a>
+                      </td>
+
+                  </tr>
+                {{/each}}
+              </table>
+            </div>
+          </div>
+        </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+</template>

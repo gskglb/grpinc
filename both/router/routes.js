@@ -23,5 +23,5 @@ Router.route('/create-proposal', {
 });
 
 Router.plugin('ensureSignedIn', {
-  
+ only : ['dashboard', 'view-proposals', 'create-proposal', 'viewProposalDetails']  
 });

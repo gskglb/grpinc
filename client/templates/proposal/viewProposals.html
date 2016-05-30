@@ -29,15 +29,13 @@
                 </tr>
                 {{#each proposals}}  
                   <tr>
-                      <td>{{_id}}</td>
+                      <td><a href="/viewProposalDetails/{{_id}}" data-toggle="tooltip" title="View Details">{{_id}}</a></td>
                       <td>{{summary}}</td>
                       <td>{{status}}</td>
                       <td>
-                        <a href="#"><i class="fa fa-eye"></i></a> 
+                        <a href="/edit/{{_id}}"  data-toggle="tooltip" title="Edit Proposal"><i class="fa fa-pencil"></i></a>
                         &nbsp; 
-                        <a href="#"><i class="fa fa-pencil"></i></a>
-                        &nbsp; 
-                        <a href="#"><i class="fa fa-edit"></i></a>
+                        <a href="/delete/{{_id}}"  data-toggle="tooltip" title="Delete Proposal"><i class="fa fa-remove"></i></a>
                       </td>
 
                   </tr>

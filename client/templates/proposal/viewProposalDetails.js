@@ -5,7 +5,7 @@ Template.viewProposalDetails.rendered = function() {
 Template.viewProposalDetails.helpers({
 	isEditing: function(){
 		return Session.get('isEditing');
-	}
+	},
 });
 
 Template.viewProposalDetails.events({
@@ -31,4 +31,25 @@ Template.viewProposalDetails.events({
 		// perform delete
 	},
 
+});
+AutoForm.debug();
+
+AutoForm.hooks({
+  updateProposalForm123: {
+    onSuccess: function () {
+    	console.log("Got success message")
+      	Flash.success("Proposal is successfully updated");
+        return true;
+    }
+  }
+});
+
+AutoForm.hooks({
+  updateProposalForm123 : {
+    onSubmit : function(doc) {
+      console.log("Submitting");
+      this.done(); //We've finished
+      return true; //Let autoForm do his default job now
+    }
+  }
 });

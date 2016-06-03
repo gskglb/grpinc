@@ -48,6 +48,11 @@
           {{> afQuickField name='details'  rows=5}}
           <span class="help-block">{{afFieldMessage name='details'}}</span>
         </div>
+
+        <div class="form-group {{#if afFieldIsInvalid name='uploadedFiles'}}has-error {{/if}}" >
+          {{> afQuickField name='uploadedFiles'}}
+          <span class="help-block">{{afFieldMessage name='uploadedFiles'}}</span>
+        </div>
     </fieldset>
     <button type="submit" class="btn btn-primary">Create Proposal</button>
 

@@ -25,6 +25,18 @@ ProposalSchema = new SimpleSchema({
 	    }
 	  },
 
+	  "uploadedFiles": {
+          type: String,
+          label: 'Upload File',
+          autoform: {
+               afFieldInput: {
+                    type: 'fileUpload',
+                    collection: 'UploadedFiles'
+               }
+          }
+     },
+
+
 	  "createdAt": {
 	    type: Date,
 	    autoValue: function() {

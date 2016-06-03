@@ -39,3 +39,6 @@ standard-minifier-css
 standard-minifier-js
 useraccounts:iron-routing
 naxio:flash
+yogiben:autoform-file
+cfs:filesystem
+cfs:standard-packages

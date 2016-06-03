@@ -79,6 +79,13 @@
 
                 <strong>Created on</strong>
                 <p class="text-muted">{{createdAt}}</p>
+                <hr>
+                File Attached <br />
+                {{#each uploadedFiles}}
+                {{this.name}} : <a href="{{this.url download=true}}" target="_parent">Download</a> <br/>
+                 
+                {{/each}}  
+ 
               </div><!-- /.box-body -->
               <div class="box-footer">
               

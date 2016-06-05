@@ -9,6 +9,12 @@ Template.registerHelper("incTypes", function() {
     ];
 });
 
+Template.createProposal.helpers({
+  creator : function(){
+    console.log(Meteor.user());
+    return Meteor.user();
+  }
+});
 
 AutoForm.hooks({
   insertProposalForm: {

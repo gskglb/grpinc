@@ -23,6 +23,24 @@
             <!--
             {{> quickForm collection="Proposals" id="insertProposalForm" type="insert" omitFields="createdAt, updatedAt"}}
             -->
+            <div class="box box-default">
+              <div class="box-header with-border">
+                <h3 class="box-title">Company Details</h3>
+                <div class="box-tools pull-right">
+
+                  <span class="label label-danger">You are creating proposal for this company</span>
+                </div><!-- /.box-tools -->
+              </div><!-- /.box-header -->
+              <div class="box-body">  
+                <dl class="dl-horizontal">
+                  <dt>Name</dt>
+                  <dd>{{currentUser.organization.name}}</dd>
+                  <dt>Address</dt>
+                  <dd>{{currentUser.organization.address}}</dd>
+                  <dd><a href="{{currentUser.organization.url}}">{{currentUser.organization.url}}</a></dd>
+                </dl>
+              </div>
+            </div>
             {{> insertProposalFormTemplate}}
           </div>
         </div>
@@ -54,7 +72,7 @@
           
           
         </div>
-        <span class="help-block">Please wait for the file upload</span>
+        <span class="help-block">Please wait for the file upload completion. You will see a preview after upload completion. </span>
     </fieldset>
     <button type="submit" class="btn btn-primary">Create Proposal</button>
 

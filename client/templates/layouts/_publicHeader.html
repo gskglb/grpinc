@@ -8,6 +8,7 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     {{#if currentUser}}
+                    <a href="{{ pathFor 'dashboard' }}" class="btn btn-primary navbar-btn">Enter Site</a>
                     <a href="#" data-action="logout" class="btn btn-default navbar-btn">Sign out</a>
                     {{else}}
                     <a href="{{ pathFor 'atSignIn' }}" class="btn btn-default navbar-btn">Sign in</a>

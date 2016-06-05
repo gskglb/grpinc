@@ -1,9 +1,8 @@
 ViewProposalDetailsController = AppController.extend({
   waitOn: function() {
   	var proposalID = this.params.id;
-    console.log("uploadedFiles Registered");
-    Meteor.subscribe('uploadedFiles')
-    return this.subscribe('getProposalById',proposalID);
+    return [Meteor.subscribe('empDetailsAttach',proposalID), Meteor.subscribe('getProposalById',proposalID)];
+    this.ready();
   },
   data: function() {
   	var proposalID2 = this.params.id;

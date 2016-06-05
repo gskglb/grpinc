@@ -14,7 +14,7 @@ AutoForm.hooks({
   insertProposalForm: {
     onSuccess: function () {
       	Flash.success("Proposal is successfully created");
-        return false;
+        return true;
     }
   }
 });

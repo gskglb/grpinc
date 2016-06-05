@@ -1,4 +1,4 @@
-UploadedFiles.allow({
+EmpDetailsAttach.allow({
   insert: function(userId, doc) {
     return true;
   },

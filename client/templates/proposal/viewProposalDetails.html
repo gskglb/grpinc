@@ -80,11 +80,15 @@
                 <strong>Created on</strong>
                 <p class="text-muted">{{createdAt}}</p>
                 <hr>
-                File Attached <br />
-                {{#each uploadedFiles}}
-                {{this.name}} : <a href="{{this.url download=true}}" target="_parent">Download</a> <br/>
+
+                <strong>Created By</strong>
+                <p class="text-muted">{{proposalCreatedByUser.profile.name}}</p>
+                <hr>
+                <strong>Employee Details (Refer File Attached)</strong> 
+                <p class="text-muted"><a href="{{empDetailsAttach.url download=true}}" target="_parent">{{empDetailsAttach.name}}</a></p>
+                
                  
-                {{/each}}  
+                
  
               </div><!-- /.box-body -->
               <div class="box-footer">

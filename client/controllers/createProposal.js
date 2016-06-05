@@ -10,6 +10,3 @@ CreateProposalController = AppController.extend({
   }
 });
 
-CreateProposalController.events({
- 
-});

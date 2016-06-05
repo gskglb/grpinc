@@ -6,12 +6,12 @@ Template.viewProposalDetails.helpers({
 	isEditing: function(){
 		return Session.get('isEditing');
 	},
-	uploadedFiles: function () {
-		var f = UploadedFiles.find();
-		console.log("UploadedFiles" + f);
-		
-    	return f;
-  	}
+	empDetailsAttach: function () {
+		return EmpDetailsAttach.findOne({_id : this.empDetailsAttach});
+  	},
+  	proposalCreatedByUser : function(){
+  		return Meteor.users.findOne({_id : this.createdBy});
+  	},
 });
 
 Template.viewProposalDetails.events({

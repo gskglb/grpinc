@@ -48,6 +48,7 @@
             </section>   
         {{else}}
           <section class="content-header">
+            {{flash}}
             <h1>
               Proposal Details
               <small><button class="btn btn-flat btn-sm btn-success edit">Edit</button></small>
@@ -95,12 +96,8 @@
               
               <button class="btn btn-flat btn-primary submit">Submit For Review</button>
               <button class="btn btn-flat btn-info">Attach Additional Documents</button>
-
-              {{#if deleteAttempted}}
-                <button class="btn btn-flat btn-danger pull-right delete">Confirm Delete</button>
-              {{else}}
-                <button class="btn btn-flat btn-danger pull-right attemptDelete">Delete</button>
-              {{/if}}  
+              <!--{{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red pull-right btn-flat"}}Delete{{/quickRemoveButton}}
+              -->
               </div>
             </div>    
           </section><!-- /.content --> 

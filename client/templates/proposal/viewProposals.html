@@ -15,6 +15,7 @@
 
         <!-- Main content -->
         <section class="content">
+          {{flash}}
           <div class="box box-info">
 
           <div class="box-body">
@@ -33,9 +34,10 @@
                       <td>{{summary}}</td>
                       <td>{{status}}</td>
                       <td>
-                        <a href="/viewProposalDetails/{{_id}}"  data-toggle="tooltip" title="View / Edit Proposal"><i class="fa fa-eye"></i></a>
+                        <a href="/viewProposalDetails/{{_id}}"   class="btn bg-red btn-sm btn-flat"><i class="fa fa-eye" data-toggle="tooltip" title="View / Edit Proposal"></i></a>
                         &nbsp; 
-                        <a href="/delete/{{_id}}"  data-toggle="tooltip" title="Delete Proposal"><i class="fa fa-remove"></i></a>
+                        {{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red btn-sm btn-flat"}}<i class="fa fa-remove" data-toggle="tooltip" title="Delete Proposal"></i>{{/quickRemoveButton}}
+                        <!--<a href="/delete/{{_id}}"  data-toggle="tooltip" title="Delete Proposal"><i class="fa fa-remove"></i></a> -->
                       </td>
 
                   </tr>

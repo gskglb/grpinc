@@ -11,9 +11,12 @@ Template.registerHelper("incTypes", function() {
 
 Template.createProposal.helpers({
   creator : function(){
-    console.log(Meteor.user());
     return Meteor.user();
-  }
+  },
+  refNo : function(){
+    return "P_" + moment(new Date).format('DDMMMYYYY_HHMMSSS');
+  },
+
 });
 
 AutoForm.hooks({

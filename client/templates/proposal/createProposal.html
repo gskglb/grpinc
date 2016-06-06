@@ -52,7 +52,8 @@
   {{flash}}
   {{#autoForm schema="ProposalSchema" collection="Proposals" id="insertProposalForm" type="insert"}}
     <fieldset>
-          {{> afQuickField name='status' value="DRAFT PROPOSAL" readonly=true}} 
+          {{> afQuickField name='status' value="DRAFT PROPOSAL" readonly=true}}
+          {{> afQuickField name='refNo'  readonly=true}}
         <div class="form-group {{#if afFieldIsInvalid name='incType'}}has-error {{/if}}" >
           {{> afQuickField name='incType' autofocus='' options=incTypes}}
           

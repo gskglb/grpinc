@@ -21,7 +21,7 @@
             <div class="box-body table-responsive">
               <table class="table table-hover table-bordered table-striped">
                 <tr>
-                  <th width="20%">Proposal ID</th>
+                  <th width="20%">Proposal Reference Number</th>
                   <th width="40%">Summary</th>
                   <th width="20%">Status</th>
                   <th width="20%">Action</th>
@@ -29,7 +29,7 @@
                 </tr>
                 {{#each proposals}}  
                   <tr>
-                      <td><a href="/viewProposalDetails/{{_id}}" data-toggle="tooltip" title="View Details">{{_id}}</a></td>
+                      <td><a href="/viewProposalDetails/{{_id}}" data-toggle="tooltip" title="View Details">{{refNo}}</a></td>
                       <td>{{summary}}</td>
                       <td>{{status}}</td>
                       <td>

@@ -1,6 +1,7 @@
 // Get proposals  
 Meteor.publishComposite("getProposals", {
 	find : function () {
+		console.log("get proposal called");
 		return Proposals.find({'createdBy' : this.userId}, {sort : {createdAt : -1}});
 	},
 	children : [

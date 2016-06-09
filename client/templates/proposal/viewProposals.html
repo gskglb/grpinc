@@ -9,7 +9,7 @@
           </h1>
           <ol class="breadcrumb">
             <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li class="active">View Proposals</li>
+            <li class="active">Proposals List</li>
           </ol>
         </section>
 
@@ -30,11 +30,11 @@
                 </tr>
                 {{#each proposals}}  
                   <tr>
-                      <td><a href="/viewProposalDetails/{{_id}}" data-toggle="tooltip" title="View Details">{{refNo}}</a></td>
+                      <td><a href="/view/Proposal/{{_id}}" data-toggle="tooltip" title="View Details">{{refNo}}</a></td>
                       <td>{{summary}}</td>
                       <td>{{status}}</td>
                       <td>
-                        <a href="/viewProposalDetails/{{_id}}"   class="btn bg-red btn-sm btn-flat"><i class="fa fa-eye" data-toggle="tooltip" title="View / Edit Proposal"></i></a>
+                        <a href="/view/Proposal/{{_id}}"   class="btn bg-red btn-sm btn-flat"><i class="fa fa-eye" data-toggle="tooltip" title="View / Edit Proposal"></i></a>
                         &nbsp; 
                         {{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red btn-sm btn-flat"}}<i class="fa fa-remove" data-toggle="tooltip" title="Delete Proposal"></i>{{/quickRemoveButton}}
                         <!--<a href="/delete/{{_id}}"  data-toggle="tooltip" title="Delete Proposal"><i class="fa fa-remove"></i></a> -->

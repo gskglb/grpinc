@@ -1,6 +1,6 @@
 CreateProposalController = AppController.extend({
   waitOn: function() {
-    return this.subscribe('userdata');
+    return [this.subscribe('userdata'), this.subscribe("getCompanyDetails")];
     this.ready();
   },
   data: {

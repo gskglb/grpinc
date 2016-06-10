@@ -41,7 +41,9 @@
                 </dl>
               </div>
             </div>
-            {{> insertProposalFormTemplate}}
+            
+            {{> Template.dynamic template="insertProposalFormTemplate" data=currentUser.company}}
+          
           </div>
         </div>
         </section><!-- /.content -->
@@ -50,10 +52,11 @@
 
 <template name="insertProposalFormTemplate">
   {{flash}}
-  {{#autoForm schema="ProposalSchema" collection="Proposals" id="insertProposalForm" type="insert"}}
+  {{#autoForm schema="ProposalSchema" collection="Proposals" id="insertProposalForm" type="insert" doc=defaultValues}}
     <fieldset>
-          {{> afQuickField name='status' value="DRAFT PROPOSAL" readonly=true}}
-          {{> afQuickField name='refNo'  readonly=true}}
+          {{> afQuickField name='companyId' type="hidden" readonly=true}}
+          {{> afQuickField name='status' readonly=true }}
+          {{> afQuickField name='refNo'  readonly=true }}
         <div class="form-group {{#if afFieldIsInvalid name='incType'}}has-error {{/if}}" >
           {{> afQuickField name='incType' autofocus='' options=incTypes}}
           

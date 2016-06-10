@@ -34,10 +34,10 @@
                       <td>{{summary}}</td>
                       <td>{{status}}</td>
                       <td>
-                        <a href="/view/Proposal/{{_id}}"   class="btn bg-red btn-sm btn-flat"><i class="fa fa-eye" data-toggle="tooltip" title="View / Edit Proposal"></i></a>
+                        <a href="/view/Proposal/{{_id}}"><i class="fa fa-eye" data-toggle="tooltip" title="View / Edit Proposal"></i></a>
                         &nbsp; 
-                        {{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red btn-sm btn-flat"}}<i class="fa fa-remove" data-toggle="tooltip" title="Delete Proposal"></i>{{/quickRemoveButton}}
-                        <!--<a href="/delete/{{_id}}"  data-toggle="tooltip" title="Delete Proposal"><i class="fa fa-remove"></i></a> -->
+                        <!--{{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red btn-sm btn-flat"}}<i class="fa fa-remove" data-toggle="tooltip" title="Delete Proposal"></i>{{/quickRemoveButton}} -->
+                        <a href="#" data-toggle="tooltip" title="Delete Proposal"><i class="fa fa-remove delete"></i></a>
                       </td>
 
                   </tr>

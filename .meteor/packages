@@ -45,3 +45,4 @@ cfs:standard-packages
 accounts-base
 accounts-ui
 aldeed:delete-button
+kevohagan:sweetalert

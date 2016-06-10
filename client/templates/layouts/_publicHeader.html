@@ -8,11 +8,12 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     {{#if currentUser}}
-                    <a href="{{ pathFor 'dashboard' }}" class="btn btn-primary navbar-btn">Enter App</a>
-                    <a href="#" data-action="logout" class="btn btn-default navbar-btn">Sign out</a>
+                       <a href="#" data-action="logout" class="btn btn-default navbar-btn">Sign out</a>
+                        <a href="{{ pathFor 'dashboard' }}" class="btn btn-primary navbar-btn">Enter App</a>
                     {{else}}
-                    <a href="{{ pathFor 'atSignIn' }}" class="btn btn-default navbar-btn">Sign in</a>
-                    <a href="{{ pathFor 'atSignUp' }}" class="btn btn-primary navbar-btn">Register</a> {{/if}}
+                        <a href="{{ pathFor 'atSignIn' }}" class="btn btn-default navbar-btn">Sign in</a>
+                        <a href="{{ pathFor 'atSignUp' }}" class="btn btn-primary navbar-btn">Register</a> 
+                    {{/if}}
                 </ul>
             </div>
         </nav>

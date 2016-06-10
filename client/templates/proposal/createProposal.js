@@ -9,19 +9,20 @@ Template.registerHelper("incTypes", function() {
     ];
 });
 
-Template.createProposal.helpers({
-  creator : function(){
-    return Meteor.user();
-  },
-  refNo : function(){
-    return "P_" + moment(new Date).format('DDMMMYYYY_HHMMSSS');
-  },
-
+Template.insertProposalFormTemplate.helpers({
+  defaultValues : function(){
+    var templateData = Template.instance().data;
+    return { 
+      refNo : "P_" + moment().format('DDMMMYYYY_HMMss'),
+      status : "Draft",
+      companyId : templateData._id,
+    };
+  }
 });
 
 AutoForm.hooks({
   insertProposalForm: {
-    onSuccess: function () {
+   onSuccess: function () {
       	Flash.success("Proposal is successfully created");
         return true;
     }

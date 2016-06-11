@@ -51,7 +51,11 @@
             {{flash}}
             <h1>
               Proposal Details
-              <small><button class="btn btn-flat btn-sm btn-success edit">Edit</button></small>
+              {{#if isEditRequired}}
+                <small><button class="btn btn-flat btn-sm btn-success edit">Edit</button></small>
+              {{else}}
+                <small>Proposal is pending action. Edit is not allowed</small>
+              {{/if}}
             </h1>
             <ol class="breadcrumb">
               <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -93,9 +97,10 @@
  
               </div><!-- /.box-body -->
               <div class="box-footer">
-              
-              <button class="btn btn-flat btn-primary submit">Submit For Review</button>
+              {{#if isSubmitForReviewRequired}}
+              <button class="btn btn-flat btn-primary submitForReview">Submit For Review</button>
               <button class="btn btn-flat btn-info">Attach Additional Documents</button>
+              {{/if}}
               <!--{{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red pull-right btn-flat"}}Delete{{/quickRemoveButton}}
               -->
               </div>

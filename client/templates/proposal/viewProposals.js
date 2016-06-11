@@ -3,6 +3,18 @@ Template.viewProposals.rendered = function() {
 };
 
 Template.viewProposals.helpers({
+
+   statusIndicator : function(){
+    if(this.status === "Draft") return "danger";
+    if(this.status === "Pending Review") return "info";
+    if(this.status === "Under Review") return "warning";
+    return "success";
+   },
+
+   isDeleteRequired : function(){
+    return this.status === "Draft";
+   }, 
+
     onError: function () {
       return function (error) { 
       	Flash.danger("System ecountered error");

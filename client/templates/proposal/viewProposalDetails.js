@@ -29,7 +29,13 @@ Template.viewProposalDetails.helpers({
           this.remove();
         }
       };
-    }
+    },
+    isSubmitForReviewRequired : function(){
+      return this.status === "Draft";
+    },
+    isEditRequired : function(){
+      return this.status === "Draft";
+    },
 
 });
 
@@ -46,15 +52,28 @@ Template.viewProposalDetails.events({
 		Session.set('isEditing', false);
 		
 	},
-	'click .attemptDelete' : function(){
-		Session.set('deleteAttempted', true);
-		
-	},
-	'click .delete' : function(){
-		Session.set('deleteAttempted', false);
-		
-		// perform delete
-	},
+	
+  'click .submitForReview' : function(){
+    var proposalId = this._id;
+    swal({   
+          title: "Are you sure?",   
+          type: "warning",   
+          showCancelButton: true,   
+          confirmButtonColor: "#DD6B55",   
+          confirmButtonText: "Yes, submit it!",   
+          closeOnConfirm: false 
+        }, function(){   
+             console.log("Submitted " + proposalId);
+             Meteor.call("submitForReview", proposalId, function(error, result) {
+              if(error) {
+               swal("Error!", "Something went wrong.", "error"); 
+              } else {
+               swal("Submitted!", "The proposal has been successfully submitted for review.", "success");  
+              }
+            });     
+        }
+      );
+  }
 
 });
 AutoForm.debug();

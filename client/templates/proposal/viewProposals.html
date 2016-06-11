@@ -22,7 +22,7 @@
             <div class="box-body table-responsive">
               <table class="table table-hover table-bordered table-striped">
                 <tr>
-                  <th width="20%">Proposal Reference Number</th>
+                  <th width="20%">Proposal Number</th>
                   <th width="40%">Summary</th>
                   <th width="20%">Status</th>
                   <th width="20%">Action</th>
@@ -32,12 +32,17 @@
                   <tr>
                       <td><a href="/view/Proposal/{{_id}}" data-toggle="tooltip" title="View Details">{{refNo}}</a></td>
                       <td>{{summary}}</td>
-                      <td>{{status}}</td>
+                      <td>
+                        <span class="label label-{{statusIndicator}}">{{status}}</span>
+                      </td>
                       <td>
                         <a href="/view/Proposal/{{_id}}"><i class="fa fa-eye" data-toggle="tooltip" title="View / Edit Proposal"></i></a>
                         &nbsp; 
-                        <!--{{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red btn-sm btn-flat"}}<i class="fa fa-remove" data-toggle="tooltip" title="Delete Proposal"></i>{{/quickRemoveButton}} -->
-                        <a href="#" data-toggle="tooltip" title="Delete Proposal"><i class="fa fa-remove delete"></i></a>
+                        {{#if isDeleteRequired}}  
+                          <a href="#" data-toggle="tooltip" title="Delete Proposal"><i class="fa fa-remove delete"></i></a>
+                        {{else}}
+                          <span>Delete Not possible</span>
+                        {{/if}}    
                       </td>
 
                   </tr>

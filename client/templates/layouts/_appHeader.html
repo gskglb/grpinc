@@ -38,9 +38,11 @@
             <ul class="sidebar-menu">
 
                 <li class="header">Messages</li>
-                <li><a href="#"><span>Inbox</span></a></li>
+                {{#if showCompanySection}}
+                <li><a href="{{ pathFor 'companyInbox' }}"><span>Inbox</span></a></li>
                 <li><a href="#"><span>Outbox</span></a></li>
                 <li><a href="#"><span>Trash</span></a></li>
+                {{/if}}
 
                 <li class="header">Services</li>
                 {{#if isInRole 'create'}}

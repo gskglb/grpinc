@@ -1,8 +1,8 @@
-// Create Proposal 
+
 CompanyInboxController = AppController.extend({
   waitOn: function() {
     //return [this.subscribe('userdata'), this.subscribe("getCompanyDetails")];
-    this.ready();
+    //this.ready();
   },
   data: {
    // userdata: Users.findOne({_id : Meteor.userId()});

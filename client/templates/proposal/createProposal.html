@@ -5,7 +5,7 @@
         <section class="content-header">
           <h1>
             Proposal Creation Screen
-            <small>Optional description</small>
+            <small></small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -73,10 +73,25 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='empDetailsAttach'}}has-error {{/if}}" >
           {{> afQuickField name='empDetailsAttach'}}
-          
-          
         </div>
         <span class="help-block">Please wait for the file upload completion. You will see a preview after upload completion. </span>
+
+        <div class="form-group {{#if afFieldIsInvalid name='prevClaimsHistoryApplicable'}}has-error {{/if}}" >
+          {{> afQuickField name='prevClaimsHistoryApplicable' options="allowed" noselect=true  }}
+          
+        </div>        
+
+        {{#if afFieldValueIs name="prevClaimsHistoryApplicable" value="Yes"}}
+          <div class="form-group {{#if afFieldIsInvalid name='prevClaimsHistory'}}has-error {{/if}}" >
+            {{> afQuickField name='prevClaimsHistory'}}
+          </div>
+          <span class="help-block">Please wait for the file upload completion. You will see a preview after upload completion. </span>
+        {{/if}}
+
+
+
+
+
     </fieldset>
     <button type="submit" class="btn btn-primary">Create Proposal</button>
 

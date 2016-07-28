@@ -2,9 +2,7 @@ Template.viewProposalDetails.rendered = function() {
   console.log('Template Rendered ' + Session.get("deleteAttempted"));
 };
 
-Template.registerHelper('equals', function (a, b) {
-  return a === b;
-});
+
 
 Template.viewProposalDetails.helpers({
 	isEditing: function(){
@@ -90,14 +88,9 @@ AutoForm.debug();
 AutoForm.hooks({
   updateProposalForm123: {
     onSuccess: function () {
-    	 	Flash.success("Proposal is successfully updated");
+    	 	Flash.success("Proposal is successfully updated123");
         return true;
-    }
-  }
-});
-
-AutoForm.hooks({
-  updateProposalForm123 : {
+    },
     onSubmit : function(doc) {
       console.log("Submitting");
       this.done(); //We've finished
@@ -105,3 +98,4 @@ AutoForm.hooks({
     }
   }
 });
+

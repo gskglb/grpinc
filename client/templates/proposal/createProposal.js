@@ -10,6 +10,10 @@ Template.registerHelper("incTypes", function() {
     ];
 });
 
+Template.registerHelper('equals', function (a, b) {
+  return a === b;
+});
+
 Template.insertProposalFormTemplate.helpers({
   defaultValues : function(){
     var templateData = Template.instance().data;

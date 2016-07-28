@@ -23,23 +23,17 @@
                 <table class="table table-hover table-bordered table-striped">
                   <tr>
                     <th width="20%">Ref Number</th>
-                    <th width="40%">Task</th>
+                    <th width="60%">Task</th>
                     <th width="20%">Status</th>
-                    <th width="20%">Action</th>
                   </tr>
                   {{#each tasks}}  
                   <tr>
-                      <td><a href="/view/Proposal/{{_id}}" data-toggle="tooltip" title="View Proposal Details">{{refNo}}</a></td>
+                      <td><a href="/view/Proposal/{{url}}" data-toggle="tooltip" title="View Proposal Details">{{refNo}}</a></td>
                       <td>{{desciption}}</td>
                       <td>
                         <span class="label label-{{statusIndicator}}">{{status}}</span>
                       </td>
-                      <td>
-                        <a href="/view/Task/{{_id}}"><i class="fa fa-eye" data-toggle="tooltip" title="View / Action Task"></i></a>
-                        
-                        
-                      </td>
-
+                      
                   </tr>
                 {{/each}}
                 </table>

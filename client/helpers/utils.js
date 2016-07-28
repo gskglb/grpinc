@@ -6,3 +6,4 @@ Template.registerHelper('truncate', function(string, length) {
 Template.registerHelper('currentDate', function() {
   return moment(date).format('DD-MM-YYYY');
 });
+

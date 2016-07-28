@@ -81,12 +81,12 @@
 
         </div>
 
-        
+        {{#if  afFieldValueIs name="prevClaimsHistoryApplicable" value="Yes"}}
           <div class="form-group {{#if afFieldIsInvalid name='prevClaimsHistory'}}has-error {{/if}}" >
             {{> afQuickField name='prevClaimsHistory'}}
           </div>
           <span class="help-block">Please wait for the file upload completion. You will see a preview after upload completion. </span>
-     
+        {{/if}}
     </fieldset>
     <button type="submit" class="btn btn-primary">Create Proposal</button>
 

@@ -3,6 +3,6 @@ Meteor.publish('prevClaimsHistory', function(proposalID) {
 	return PreviousClaimsHistory.find({_id : proposal.prevClaimsHistory});
 });
 
-Meteor.publish('findAttach', function() {
+Meteor.publish('findClaimsAttach', function() {
 	return PreviousClaimsHistory.find();
 });

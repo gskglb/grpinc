@@ -1,11 +1,11 @@
 
 CompanyInboxController = AppController.extend({
   waitOn: function() {
-    //return [this.subscribe('userdata'), this.subscribe("getCompanyDetails")];
-    //this.ready();
+    return [this.subscribe('getTasks')];
+    this.ready();
   },
   data: {
-   // userdata: Users.findOne({_id : Meteor.userId()});
+   tasks: CompanyInbox.find()
   },
   onAfterAction: function () {
     Meta.setTitle('Inbox');

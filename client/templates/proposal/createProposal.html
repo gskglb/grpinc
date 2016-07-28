@@ -31,7 +31,7 @@
                   <span class="label label-danger">You are creating proposal for this company</span>
                 </div><!-- /.box-tools -->
               </div><!-- /.box-header -->
-              <div class="box-body">  
+              <div class="box-body">
                 <dl class="dl-horizontal">
                   <dt>Name</dt>
                   <dd>{{currentUser.company.name}}</dd>
@@ -41,9 +41,9 @@
                 </dl>
               </div>
             </div>
-            
+
             {{> Template.dynamic template="insertProposalFormTemplate" data=currentUser.company}}
-          
+
           </div>
         </div>
         </section><!-- /.content -->
@@ -59,16 +59,16 @@
           {{> afQuickField name='refNo'  readonly=true }}
         <div class="form-group {{#if afFieldIsInvalid name='incType'}}has-error {{/if}}" >
           {{> afQuickField name='incType' autofocus='' options=incTypes}}
-          
+
         </div>
-        
+
         <div class="form-group {{#if afFieldIsInvalid name='summary'}}has-error {{/if}}" >
           {{> afQuickField name='summary'}}
-          
+
         </div>
         <div class="form-group {{#if afFieldIsInvalid name='details'}}has-error {{/if}}" >
           {{> afQuickField name='details'  rows=5}}
-          
+
         </div>
 
         <div class="form-group {{#if afFieldIsInvalid name='empDetailsAttach'}}has-error {{/if}}" >
@@ -78,23 +78,18 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='prevClaimsHistoryApplicable'}}has-error {{/if}}" >
           {{> afQuickField name='prevClaimsHistoryApplicable' options="allowed" noselect=true  }}
-          
-        </div>        
 
-        {{#if afFieldValueIs name="prevClaimsHistoryApplicable" value="Yes"}}
+        </div>
+
+        
           <div class="form-group {{#if afFieldIsInvalid name='prevClaimsHistory'}}has-error {{/if}}" >
             {{> afQuickField name='prevClaimsHistory'}}
           </div>
           <span class="help-block">Please wait for the file upload completion. You will see a preview after upload completion. </span>
-        {{/if}}
-
-
-
-
-
+     
     </fieldset>
     <button type="submit" class="btn btn-primary">Create Proposal</button>
 
   {{/autoForm}}
-         
+
 </template>

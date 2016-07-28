@@ -1,6 +1,10 @@
 Template.viewProposalDetails.rendered = function() {
-  console.log('Template Rendered ' + Session.get("deleteAttempted")); 
+  console.log('Template Rendered ' + Session.get("deleteAttempted"));
 };
+
+Template.registerHelper('equals', function (a, b) {
+  return a === b;
+});
 
 Template.viewProposalDetails.helpers({
 	isEditing: function(){
@@ -9,17 +13,22 @@ Template.viewProposalDetails.helpers({
 	empDetailsAttach: function () {
 		return EmpDetailsAttach.findOne({_id : this.empDetailsAttach});
   	},
+
+  prevClaimsHistory: function () {
+    return PreviousClaimsHistory.findOne({_id : this.prevClaimsHistory});
+    },
+    
   	proposalCreatedByUser : function(){
   		return Meteor.users.findOne({_id : this.createdBy});
   	},
- 
+
     onError: function () {
-      return function (error) { 
+      return function (error) {
       	Flash.danger("System ecountered error");
       };
     },
     onSuccess: function () {
-      return function (result) { 
+      return function (result) {
       	Flash.success("Proposal Deleted successfully");
       };
     },
@@ -42,35 +51,35 @@ Template.viewProposalDetails.helpers({
 Template.viewProposalDetails.events({
 	'click .edit' : function(){
 		Session.set('isEditing', true);
-		
+
 	},
 	'click .submit' : function(){
 		Session.set('isEditing', false);
-		
+
 	},
 	'click .cancelEdit' : function(){
 		Session.set('isEditing', false);
-		
+
 	},
-	
+
   'click .submitForReview' : function(){
     var proposalId = this._id;
-    swal({   
-          title: "Are you sure?",   
-          type: "warning",   
-          showCancelButton: true,   
-          confirmButtonColor: "#DD6B55",   
-          confirmButtonText: "Yes, submit it!",   
-          closeOnConfirm: false 
-        }, function(){   
+    swal({
+          title: "Are you sure?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Yes, submit it!",
+          closeOnConfirm: false
+        }, function(){
              console.log("Submitted " + proposalId);
              Meteor.call("submitForReview", proposalId, function(error, result) {
               if(error) {
-               swal("Error!", "Something went wrong.", "error"); 
+               swal("Error!", "Something went wrong.", "error");
               } else {
-               swal("Submitted!", "The proposal has been successfully submitted for review.", "success");  
+               swal("Submitted!", "The proposal has been successfully submitted for review.", "success");
               }
-            });     
+            });
         }
       );
   }

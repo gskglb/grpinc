@@ -31,7 +31,11 @@ ViewProposalsController = AppController.extend({
 ViewProposalDetailsController = AppController.extend({
   waitOn: function() {
     var proposalID = this.params.id;
-    return [Meteor.subscribe('empDetailsAttach',proposalID), Meteor.subscribe('getProposalById',proposalID)];
+    return [
+      Meteor.subscribe('empDetailsAttach',proposalID),
+      Meteor.subscribe('prevClaimsHistory',proposalID),
+      Meteor.subscribe('getProposalById',proposalID)
+    ];
     this.ready();
   },
   data: function() {

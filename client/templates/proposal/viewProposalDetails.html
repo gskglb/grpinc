@@ -14,7 +14,7 @@
               <li class="active">Edit Proposal Details</li>
             </ol>
           </section>
-          
+
           <section class="content">
             <div class="box box-primary">
               <div class="box-header with-border">
@@ -24,12 +24,12 @@
                   {{flash}}
                   {{#autoForm doc=this collection="Proposals" id="updateProposalForm123" type="update"}}
                     <fieldset>
-                          {{> afQuickField name='status' readonly=true}} 
+                          {{> afQuickField name='status' readonly=true}}
                         <div class="form-group {{#if afFieldIsInvalid name='incType'}}has-error {{/if}}" >
                           {{> afQuickField name='incType' autofocus='' options=incTypes}}
                           <span class="help-block">{{afFieldMessage name='summary'}}</span>
                         </div>
-                        
+
                         <div class="form-group {{#if afFieldIsInvalid name='summary'}}has-error {{/if}}" >
                           {{> afQuickField name='summary'}}
                           <span class="help-block">{{afFieldMessage name='summary'}}</span>
@@ -45,7 +45,7 @@
 
               </div>
             </div>
-            </section>   
+            </section>
         {{else}}
           <section class="content-header">
             {{flash}}
@@ -63,7 +63,7 @@
               <li class="active">View Proposal</li>
             </ol>
           </section>
-          
+
           <section class="content">
             <div class="box box-primary">
               <div class="box-header with-border">
@@ -89,12 +89,21 @@
                 <strong>Created By</strong>
                 <p class="text-muted">{{this.creator.profile.name}}</p>
                 <hr>
-                <strong>Employee Details (Refer File Attached)</strong> 
+                <strong>Employee Details (Refer File Attached)</strong>
                 <p class="text-muted"><a href="{{empDetailsAttach.url download=true}}" target="_parent">{{empDetailsAttach.name}}</a></p>
-                
-                 
-                
- 
+                <hr>
+                <strong>Previous Claims History Available?</strong>
+                {{#if equals prevClaimsHistoryApplicable 'Yes'}}
+                  <p class="text-muted">{{prevClaimsHistoryApplicable}}</p>
+                  <hr>
+                  <strong>Previous Claims History Attachment</strong>
+                  <p class="text-muted"><a href="{{prevClaimsHistory.url download=true}}" target="_parent">{{prevClaimsHistory.name}}</a></p>
+                {{else}}
+                  <p class="text-muted">No</p>
+                {{/if}}
+
+
+
               </div><!-- /.box-body -->
               <div class="box-footer">
               {{#if isSubmitForReviewRequired}}
@@ -104,8 +113,8 @@
               <!--{{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red pull-right btn-flat"}}Delete{{/quickRemoveButton}}
               -->
               </div>
-            </div>    
-          </section><!-- /.content --> 
+            </div>
+          </section><!-- /.content -->
         {{/if}}
       </div><!-- /.content-wrapper -->
 </template>

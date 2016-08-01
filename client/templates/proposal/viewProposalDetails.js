@@ -43,6 +43,9 @@ Template.viewProposalDetails.helpers({
     isEditRequired : function(){
       return this.status === "Draft";
     },
+    isReviewButtonRequired : function(){
+      return this.status === "Pending Review";
+    },
 
 });
 

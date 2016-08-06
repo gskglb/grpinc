@@ -43,7 +43,7 @@ Template.viewProposalDetails.helpers({
     isEditRequired : function(){
       return this.status === "Draft";
     },
-    isReviewButtonRequired : function(){
+    isReviewApproveButtonRequired : function(){
       return this.status === "Pending Review";
     },
 
@@ -83,7 +83,48 @@ Template.viewProposalDetails.events({
             });
         }
       );
-  }
+  },
+
+  'click .approve' : function(){
+    var proposalId = this._id;
+    Meteor.call("approveProposalForPublish", proposalId, function(error, result) {
+      if(error) {
+        swal("Error!", "Something went wrong.", "error");
+      } else {
+        swal("Approved!", "The proposal has been successfully approved.", "success");
+      }
+    });      
+  },
+
+  'click .reject' : function(){
+    var proposalId = this._id;
+    
+    swal({
+       title: "Your Comment please!",   
+       text: "Please enter reason for rejection",   
+       type: "input",   
+       showCancelButton: true,   
+       closeOnConfirm: false,   
+       animation: "slide-from-top",   
+       inputPlaceholder: "Rejection Comment" }, 
+
+       function(inputValue){   
+        if (inputValue === false) 
+          return false;      
+        if (inputValue === "") {
+          swal.showInputError("You need to write something!");     
+          return false   
+        }
+        Meteor.call("rejectProposalForPublish", proposalId, inputValue, function(error, result) {
+          if(error) {
+            swal("Error!", "Something went wrong.", "error");
+          } else {
+            swal("Rejected!", "The proposal has been rejected.", "success");
+          }
+        }); 
+    });
+  }, 
+   
 
 });
 AutoForm.debug();
@@ -91,7 +132,8 @@ AutoForm.debug();
 AutoForm.hooks({
   updateProposalForm123: {
     onSuccess: function () {
-    	 	Flash.success("Proposal is successfully updated123");
+    	 	Flash.success("Proposal is successfully updated");
+        Session.set('isEditing', false);
         return true;
     },
     onSubmit : function(doc) {

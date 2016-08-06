@@ -48,7 +48,6 @@
             </section>
         {{else}}
           <section class="content-header">
-            {{flash}}
             <h1>
               Proposal Details
               {{#if isEditRequired}}
@@ -70,6 +69,7 @@
                 <h3 class="box-title">{{status}}</h3>
               </div><!-- /.box-header -->
               <div class="box-body">
+                {{flash}}
                 <strong>Summary</strong>
                 <p class="text-muted">
                   {{summary}}
@@ -108,8 +108,19 @@
               <div class="box-footer">
               {{#if isSubmitForReviewRequired}}
               <button class="btn btn-flat btn-primary submitForReview">Submit For Review</button>
-              <button class="btn btn-flat btn-default submitForPublish">Proceed to Publish</button>
+              &nbsp;
+              <a href="/publish/Proposal/{{_id}}" class="text-center">Proceed to Publish</a>
+
+           
               {{/if}}
+
+              {{#if isReviewApproveButtonRequired}}
+              <button class="btn btn-flat btn-primary approve">Approve for publish</button>
+              &nbsp;
+              <button class="btn btn-flat btn-danger reject">Reject with comment</button>
+              {{/if}}
+
+
               <!--{{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red pull-right btn-flat"}}Delete{{/quickRemoveButton}}
               -->
               </div>

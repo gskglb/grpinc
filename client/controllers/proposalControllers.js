@@ -46,3 +46,22 @@ ViewProposalDetailsController = AppController.extend({
     Meta.setTitle('View Proposal Details');
   }
 });
+
+PublishProposalController = AppController.extend({
+  waitOn: function() {
+    var proposalID = this.params.id;
+    return [
+      Meteor.subscribe('getProposalById',proposalID),
+      Meteor.subscribe('getServiceProvidersDetails',proposalID),
+      
+    ];
+    this.ready();
+  },
+  data: function() {
+    var proposalID2 = this.params.id;
+    return Proposals.findOne({_id:proposalID2})
+  },
+  onAfterAction: function () {
+    Meta.setTitle('Publish Proposal');
+  }
+});

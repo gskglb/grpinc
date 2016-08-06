@@ -10,7 +10,7 @@ Template.publishProposal.helpers({
   serviceProviders: function () {
     // var allServiceProviders = ServiceProvider.find();
     // Session.set("chosenSP" , allServiceProviders);
-    // return allServiceProviders;
+    // return allServiceProviders; 
     return ServiceProvider.find();
   },
 

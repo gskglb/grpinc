@@ -49,7 +49,9 @@ Template.viewProposalDetails.helpers({
     isPublishLinkRequired : function(){
       return this.status === "Pending Publish";
     },
-
+    alreadyPublished: function () {
+      return this.status === "Published";
+    },
 });
 
 Template.viewProposalDetails.events({

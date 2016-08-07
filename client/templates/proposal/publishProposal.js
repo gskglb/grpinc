@@ -10,7 +10,10 @@ Template.publishProposal.helpers({
   serviceProviders: function () {
     return ServiceProvider.find();
   },
-
+  readyForPublish: function () {
+    return this.status === "Pending Publish";
+  },
+  
 });
 
 Template.publishProposal.events({
@@ -32,11 +35,18 @@ Template.publishProposal.events({
  },
 
  'click .publish' : function(){
+ 	var proposalId = this._id;
  	var splist = Session.get("InterestedServiceProviders");
  	if( splist=="undefined" || splist.length == 0){
  		swal("Error!", "You need to select atleast one service provider", "error");
  	}else{
- 		swal("Success!", "Nice Job", "success");
+ 		Meteor.call("publishProposal", proposalId, splist, function(error, result) {
+	      if(error) {
+	        swal("Error!", "Something went wrong.", "error");
+	      } else {
+	        swal("Published!", "The proposal has been successfully published.", "success");
+	      }
+	    });  
  	}
  }
 

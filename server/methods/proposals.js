@@ -66,6 +66,13 @@ Meteor.methods({
     console.log("Proposal " + proposalId + " is rejected from publishing with remark " +  rejectionComment);    
 
 
-  }
+  },
+
+  publishProposal : function(proposalId, selectedServiceProviderList){
+    // 1. Update proposal for status = Published and publishedToServiceProvider = list from session
+    Proposals.update({_id : proposalId}, {$set : {'status' : "Published", 'publishedTo' : selectedServiceProviderList}});
+    console.log("Proposal " + proposalId + " is piblished to " +  selectedServiceProviderList);
+    // 2. Update Service providers with new request
+  },
 
 });

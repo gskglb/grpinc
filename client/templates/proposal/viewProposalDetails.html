@@ -6,7 +6,7 @@
           <section class="content-header">
             <h1>
               Edit Proposal
-              <small><button class="btn btn-flat btn-sm btn-warning cancelEdit">Cancel Edit</button></small>
+              
             </h1>
             <ol class="breadcrumb">
               <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -19,6 +19,7 @@
             <div class="box box-primary">
               <div class="box-header with-border">
                 <h3 class="box-title">{{status}}</h3>
+                <button class="btn btn-flat btn-sm btn-warning cancelEdit pull-right">Cancel</button>
               </div><!-- /.box-header -->
               <div class="box-body">
                   {{flash}}
@@ -50,11 +51,6 @@
           <section class="content-header">
             <h1>
               Proposal Details
-              {{#if isEditRequired}}
-                <small><button class="btn btn-flat btn-sm btn-success edit">Edit</button></small>
-              {{else}}
-                <small>Proposal is pending action. Edit is not allowed</small>
-              {{/if}}
             </h1>
             <ol class="breadcrumb">
               <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -67,6 +63,32 @@
             <div class="box box-primary">
               <div class="box-header with-border">
                 <h3 class="box-title">{{status}}</h3>
+                {{#if alreadyPublished}}
+                  <div class="btn-group pull-right">
+                    <a href="#" class="btn btn-flat btn-sm btn-default ">View Selected Service Providers</a>
+                    <a href="#" class="btn btn-flat btn-sm btn-default">View Responses</a>
+                    <a href="#" class="btn btn-flat btn-sm btn-danger">Withdraw Proposal</a>
+                  </div>  
+                {{/if}}
+                {{#if isReviewApproveButtonRequired}}
+                  <div class="btn-group pull-right">
+                    <button class="btn btn-flat btn-sm btn-success approve">Approve for publish</button>
+                    <button class="btn btn-flat btn-sm btn-danger reject">Reject with comment</button>
+                  </div>  
+                {{/if}}   
+
+                {{#if isSubmitForReviewRequired}}
+                  <div class="btn-group pull-right">
+                    <button class="btn btn-flat btn-sm btn-default edit">Edit Proposal</button>
+                    <button class="btn btn-flat btn-sm btn-default submitForReview">Submit For Review</button>
+                    <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-sm btn-danger">Proceed to Publish</a>
+                  </div>
+                {{/if}}
+
+                {{#if isPublishLinkRequired}}
+                <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-sm btn-success">Proceed to Publish</a>
+                {{/if}}
+
               </div><!-- /.box-header -->
               <div class="box-body">
                 {{flash}}
@@ -101,31 +123,17 @@
                 {{else}}
                   <p class="text-muted">No</p>
                 {{/if}}
-
-
-
               </div><!-- /.box-body -->
               <div class="box-footer">
-              {{#if isSubmitForReviewRequired}}
-              <button class="btn btn-flat btn-primary submitForReview">Submit For Review</button>
-              &nbsp;
-              <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-danger">Proceed to Publish</a>
-              {{/if}}
-
-              {{#if isReviewApproveButtonRequired}}
-              <button class="btn btn-flat btn-primary approve">Approve for publish</button>
-              &nbsp;
-              <button class="btn btn-flat btn-danger reject">Reject with comment</button>
-              {{/if}}
-
-              {{#if isPublishLinkRequired}}
-              <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-success">Proceed to Publish</a>
-              {{/if}}
-
-              <!--{{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red pull-right btn-flat"}}Delete{{/quickRemoveButton}}
-              -->
               </div>
             </div>
+
+
+
+              
+
+
+
           </section><!-- /.content -->
         {{/if}}
       </div><!-- /.content-wrapper -->

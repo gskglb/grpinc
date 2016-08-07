@@ -46,6 +46,9 @@ Template.viewProposalDetails.helpers({
     isReviewApproveButtonRequired : function(){
       return this.status === "Pending Review";
     },
+    isPublishLinkRequired : function(){
+      return this.status === "Pending Publish";
+    },
 
 });
 

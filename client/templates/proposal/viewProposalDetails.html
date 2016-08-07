@@ -109,9 +109,7 @@
               {{#if isSubmitForReviewRequired}}
               <button class="btn btn-flat btn-primary submitForReview">Submit For Review</button>
               &nbsp;
-              <a href="/publish/Proposal/{{_id}}" class="text-center">Proceed to Publish</a>
-
-           
+              <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-danger">Proceed to Publish</a>
               {{/if}}
 
               {{#if isReviewApproveButtonRequired}}
@@ -120,6 +118,9 @@
               <button class="btn btn-flat btn-danger reject">Reject with comment</button>
               {{/if}}
 
+              {{#if isPublishLinkRequired}}
+              <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-success">Proceed to Publish</a>
+              {{/if}}
 
               <!--{{#quickRemoveButton collection="Proposals" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn bg-red pull-right btn-flat"}}Delete{{/quickRemoveButton}}
               -->

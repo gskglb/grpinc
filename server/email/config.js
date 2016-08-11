@@ -1,8 +1,8 @@
 Meteor.startup(function() {
 
   Meteor.Mailgun.config({
-    username: 'postmaster@domain.com',
-    password: 'password-goes-here'
+    username: 'postmaster@sandbox6e5c584d6a8e4408ba0cd700ce32f461.mailgun.org',
+    password: '8fbfa8a7a6eeb8bfdd65d10bddd5e6ed'
   });
 
   Meteor.methods({
@@ -10,7 +10,7 @@ Meteor.startup(function() {
       this.unblock();
 
       Meteor.Mailgun.send({
-        to: 'recipient@example.com',
+        to: 'guru4raj@gmail.com',
         from: name + ' <' + email + '>',
         subject: 'New Contact Form Message',
         text: message,

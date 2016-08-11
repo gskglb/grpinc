@@ -71,9 +71,20 @@ Meteor.methods({
   publishProposal : function(proposalId, selectedServiceProviderList){
     // 1. Update proposal for status = Published and publishedToServiceProvider = list from session
     Proposals.update({_id : proposalId}, {$set : {'status' : "Published", 'publishedTo' : selectedServiceProviderList}});
-    console.log("Proposal " + proposalId + " is piblished to " +  selectedServiceProviderList);
+    console.log("Proposal " + proposalId + " is published to " +  selectedServiceProviderList);
     // 2. Update Service providers with new request
-    
+    this.unblock();
+
+    var name = "GroupAssurance";
+    var email = "parimala.applabs@gmail.com";
+    var message = "<Testing>New Proposal is published";
+      Meteor.Mailgun.send({
+        to: 'parimala.applabs@gmail.com,asheeshsrivastava@gmail.com',
+        from: name + ' <' + email + '>',
+        subject: 'New Proposal awaiting your response',
+        text: message,
+        html: Handlebars.templates['proposalPublishEmail']({siteURL: Meteor.absoluteUrl(), fromName: name, fromEmail: email, message: message})
+      });
   },
 
 });

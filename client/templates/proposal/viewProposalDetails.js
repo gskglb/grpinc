@@ -6,7 +6,7 @@ Template.viewProposalDetails.rendered = function() {
 
 Template.viewProposalDetails.helpers({
 	isEditing: function(){
-		return Session.get('isEditing');
+		return Session.get('isEditing') && Roles.userIsInRole(Meteor.userId(),['create']);
 	},
 	empDetailsAttach: function () {
 		return EmpDetailsAttach.findOne({_id : this.empDetailsAttach});
@@ -54,7 +54,8 @@ Template.viewProposalDetails.helpers({
     },
     listOfServiceProvidersSelected: function(){
       return ServiceProvider.find();
-    }
+    },
+
 });
 
 Template.viewProposalDetails.events({

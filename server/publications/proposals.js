@@ -2,7 +2,9 @@
 
 Meteor.publishComposite("getProposals", {
 	find : function () {
-		return Proposals.find({'createdBy' : this.userId}, {sort : {createdAt : -1}});
+		user = Meteor.users.findOne({_id: this.userId});
+		compId = user.organization.id;
+		return Proposals.find({'companyId' : compId}, {sort : {createdAt : -1}});
 	},
 	children : [
 		{
@@ -18,7 +20,7 @@ Meteor.publishComposite("getProposalById", function(id){
 	return {
 
 		find : function () {
-			return Proposals.find({'createdBy' : this.userId, "_id" : id},
+			return Proposals.find({"_id" : id},
                     { limit: 1});
 	  	},
 	  	children : [
@@ -32,6 +34,18 @@ Meteor.publishComposite("getProposalById", function(id){
 
 	  	]	
 	};
+});
+
+Meteor.publish("getPublisherDetailsForProposal", function(proposalId){
+	var proposal =  Proposals.findOne({_id:proposalId});
+	var splist = proposal.publishedTo; 
+	var array = [];
+	_.each(splist, function(sp){
+		array.push(sp._id);
+	});
+
+	var selector = {_id: {$in: array}};
+	return ServiceProvider.find(selector);
 });
 
 /*

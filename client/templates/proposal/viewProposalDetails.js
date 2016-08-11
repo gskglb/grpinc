@@ -44,14 +44,17 @@ Template.viewProposalDetails.helpers({
       return this.status === "Draft";
     },
     isReviewApproveButtonRequired : function(){
-      return this.status === "Pending Review";
+      return this.status === "Pending Review" && Roles.userIsInRole(Meteor.userId(),['reviewer']);
     },
     isPublishLinkRequired : function(){
-      return this.status === "Pending Publish";
+      return this.status === "Pending Publish" && Roles.userIsInRole(Meteor.userId(),['create','reviewer']);
     },
     alreadyPublished: function () {
       return this.status === "Published";
     },
+    listOfServiceProvidersSelected: function(){
+      return ServiceProvider.find();
+    }
 });
 
 Template.viewProposalDetails.events({

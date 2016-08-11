@@ -50,7 +50,7 @@
         {{else}}
           <section class="content-header">
             <h1>
-              Proposal Details
+              {{refNo}}
             </h1>
             <ol class="breadcrumb">
               <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -65,7 +65,7 @@
                 <h3 class="box-title">{{status}}</h3>
                 {{#if alreadyPublished}}
                   <div class="btn-group pull-right">
-                    <a href="#" class="btn btn-flat btn-sm btn-default ">View Selected Service Providers</a>
+                    <a href="#viewPublishedDetails" class="btn btn-flat btn-sm btn-default ">View Selected Service Providers</a>
                     <a href="#" class="btn btn-flat btn-sm btn-default">View Responses</a>
                     <a href="#" class="btn btn-flat btn-sm btn-danger">Withdraw Proposal</a>
                   </div>  
@@ -86,7 +86,9 @@
                 {{/if}}
 
                 {{#if isPublishLinkRequired}}
-                <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-sm btn-success">Proceed to Publish</a>
+                  <div class="btn-group pull-right">
+                  <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-sm btn-success">Proceed to Publish</a>
+                  </div>
                 {{/if}}
 
               </div><!-- /.box-header -->
@@ -128,12 +130,30 @@
               </div>
             </div>
 
+            <div class="box box-info" id="viewPublishedDetails">
+              <div class="box-header with-border">
+                <h3 class="box-title">Published to following service providers</h3>
+              </div>
+              <div class="box-body  table-responsive">
+                <table class="table table-hover table-bordered table-striped">
+                    <tr>
+                      <th width="30%">Service Provider Name</th>
+                      <th width="40%">Address</th>
+                      <th width="30%">URL</th>
+                  </tr>
+                  {{#each listOfServiceProvidersSelected}}
+                    <tr>
+                      <td>{{name}}</td>
+                      <td>{{address}}</td>
+                      <td><a href="{{url}}" target="_blank">{{url}}</a></td>
+                    </tr>
+                  {{/each}}
+                </table>
+                
+              </div>
 
 
-              
-
-
-
+            </div>
           </section><!-- /.content -->
         {{/if}}
       </div><!-- /.content-wrapper -->

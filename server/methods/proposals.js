@@ -73,6 +73,7 @@ Meteor.methods({
     Proposals.update({_id : proposalId}, {$set : {'status' : "Published", 'publishedTo' : selectedServiceProviderList}});
     console.log("Proposal " + proposalId + " is piblished to " +  selectedServiceProviderList);
     // 2. Update Service providers with new request
+    
   },
 
 });

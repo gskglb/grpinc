@@ -34,7 +34,8 @@ ViewProposalDetailsController = AppController.extend({
     return [
       Meteor.subscribe('empDetailsAttach',proposalID),
       Meteor.subscribe('prevClaimsHistory',proposalID),
-      Meteor.subscribe('getProposalById',proposalID)
+      Meteor.subscribe('getProposalById',proposalID),
+      Meteor.subscribe('getPublisherDetailsForProposal',proposalID)
     ];
     this.ready();
   },

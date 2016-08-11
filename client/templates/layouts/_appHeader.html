@@ -45,9 +45,9 @@
                 {{/if}}
 
                 <li class="header">Services</li>
-                {{#if isInRole 'create'}}
                 <li><a href="{{ pathFor 'view-proposals' }}"><span>View Proposals</span></a></li>
-                <li><a href="{{ pathFor 'create-proposal' }}"><span>Create Proposal</span></a></li>
+                {{#if isInRole 'create'}}
+                    <li><a href="{{ pathFor 'create-proposal' }}"><span>Create Proposal</span></a></li>
                 {{/if}}    
 
                 <li class="header">Help</li>

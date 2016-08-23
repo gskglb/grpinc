@@ -11,7 +11,7 @@ Template.publishProposal.helpers({
     return ServiceProvider.find();
   },
   readyForPublish: function () {
-    return this.status === "Pending Publish";
+    return this.status === "Pending Publish" || this.status === "Draft";
   },
   
 });

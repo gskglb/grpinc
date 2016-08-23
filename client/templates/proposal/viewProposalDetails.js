@@ -2,75 +2,74 @@ Template.viewProposalDetails.rendered = function() {
   console.log('Template Rendered ' + Session.get("deleteAttempted"));
 };
 
-
-
 Template.viewProposalDetails.helpers({
-	isEditing: function(){
-		return Session.get('isEditing') && Roles.userIsInRole(Meteor.userId(),['create']);
-	},
-	empDetailsAttach: function () {
-		return EmpDetailsAttach.findOne({_id : this.empDetailsAttach});
-  	},
+  isServiceProvider : function(){
+    return Roles.userIsInRole(Meteor.userId(),['service_provider']);
+  },
+  isEditing: function(){
+    return Session.get('isEditing') && Roles.userIsInRole(Meteor.userId(),['create']);
+  },    
+});
+
+Template.viewProposalDetailsAsClient.helpers({
+  empDetailsAttach: function () {
+    return EmpDetailsAttach.findOne({_id : this.empDetailsAttach});
+  },
 
   prevClaimsHistory: function () {
     return PreviousClaimsHistory.findOne({_id : this.prevClaimsHistory});
-    },
+  },
     
-  	proposalCreatedByUser : function(){
-  		return Meteor.users.findOne({_id : this.createdBy});
-  	},
+  proposalCreatedByUser : function(){
+    return Meteor.users.findOne({_id : this.createdBy});
+  },
 
-    onError: function () {
-      return function (error) {
-      	Flash.danger("System ecountered error");
-      };
-    },
-    onSuccess: function () {
-      return function (result) {
-      	Flash.success("Proposal Deleted successfully");
-      };
-    },
-    beforeRemove: function () {
-      return function () {
-        if (confirm('Really delete ?')) {
-          this.remove();
-        }
-      };
-    },
-    isSubmitForReviewRequired : function(){
-      return this.status === "Draft";
-    },
-    isEditRequired : function(){
-      return this.status === "Draft";
-    },
-    isReviewApproveButtonRequired : function(){
-      return this.status === "Pending Review" && Roles.userIsInRole(Meteor.userId(),['reviewer']);
-    },
-    isPublishLinkRequired : function(){
-      return this.status === "Pending Publish" && Roles.userIsInRole(Meteor.userId(),['create','reviewer']);
-    },
-    alreadyPublished: function () {
-      return this.status === "Published";
-    },
-    listOfServiceProvidersSelected: function(){
-      return ServiceProvider.find();
-    },
+  onError: function () {
+    return function (error) {
+      Flash.danger("System ecountered error");
+    };
+  },
+  onSuccess: function () {
+    return function (result) {
+      Flash.success("Proposal Deleted successfully");
+    };
+  },
+  beforeRemove: function () {
+    return function () {
+      if (confirm('Really delete ?')) {
+        this.remove();
+      }
+    };
+  },
 
+  isSubmitForReviewRequired : function(){
+    return this.status === "Draft" && Roles.userIsInRole(Meteor.userId(),['create']);
+  },
+  isEditRequired : function(){
+    return this.status === "Draft" && Roles.userIsInRole(Meteor.userId(),['create','reviewer']);
+  },
+  isReviewApproveButtonRequired : function(){
+    return this.status === "Pending Review" && Roles.userIsInRole(Meteor.userId(),['reviewer']);
+  },
+  isPublishLinkRequired : function(){
+    return (this.status === "Pending Publish" || this.status === "Draft") && Roles.userIsInRole(Meteor.userId(),['create','reviewer']);
+  },
+  alreadyPublished: function () {
+    return this.status === "Published";
+  },
+  listOfServiceProvidersSelected: function(){
+    return ServiceProvider.find();
+  },
 });
 
-Template.viewProposalDetails.events({
-	'click .edit' : function(){
-		Session.set('isEditing', true);
+Template.viewProposalDetailsAsClient.events({
+  'click .edit' : function(){
+    Session.set('isEditing', true);
+  },
+  'click .submit' : function(){
+    Session.set('isEditing', false);
 
-	},
-	'click .submit' : function(){
-		Session.set('isEditing', false);
-
-	},
-	'click .cancelEdit' : function(){
-		Session.set('isEditing', false);
-
-	},
+  },
 
   'click .submitForReview' : function(){
     var proposalId = this._id;
@@ -133,9 +132,23 @@ Template.viewProposalDetails.events({
         }); 
     });
   }, 
-   
+});
+
+
+//This is edit section
+Template.editProposalDetails.helpers({
 
 });
+
+Template.editProposalDetails.events({
+  'click .cancelEdit' : function(){
+    console.log("Cancel Edit");
+    Session.set('isEditing', false);
+  },
+});
+
+// End of edit section
+
 AutoForm.debug();
 
 AutoForm.hooks({

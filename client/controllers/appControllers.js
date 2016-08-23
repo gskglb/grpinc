@@ -12,10 +12,14 @@ AppController.events({
 // Dashboard Controller
 DashboardController = AppController.extend({
   waitOn: function() {
-   
+    return [
+      //this.subscribe('getNotificationCount'),
+      //this.subscribe('getTasksCount'),
+    ];
+    this.ready();   
   },
   data: {
-    
+    //notificationCount: Counts.get("getNotificationsCount")
   },
   onAfterAction: function () {
     Meta.setTitle('Dashboard');

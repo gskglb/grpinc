@@ -3,159 +3,170 @@
       <div class="content-wrapper">
         <!-- View Part -->
         {{#if isEditing}}
-          <section class="content-header">
-            <h1>
-              Edit Proposal
-              
-            </h1>
-            <ol class="breadcrumb">
-              <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li><a href="{{pathFor 'view-proposals'}}"><i class="fa fa-dashboard"></i> View Proposals</a></li>
-              <li class="active">Edit Proposal Details</li>
-            </ol>
-          </section>
-
-          <section class="content">
-            <div class="box box-primary">
-              <div class="box-header with-border">
-                <h3 class="box-title">{{status}}</h3>
-                <button class="btn btn-flat btn-sm btn-warning cancelEdit pull-right">Cancel</button>
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                  {{flash}}
-                  {{#autoForm doc=this collection="Proposals" id="updateProposalForm123" type="update"}}
-                    <fieldset>
-                          {{> afQuickField name='status' readonly=true}}
-                        <div class="form-group {{#if afFieldIsInvalid name='incType'}}has-error {{/if}}" >
-                          {{> afQuickField name='incType' autofocus='' options=incTypes}}
-                          <span class="help-block">{{afFieldMessage name='summary'}}</span>
-                        </div>
-
-                        <div class="form-group {{#if afFieldIsInvalid name='summary'}}has-error {{/if}}" >
-                          {{> afQuickField name='summary'}}
-                          <span class="help-block">{{afFieldMessage name='summary'}}</span>
-                        </div>
-                        <div class="form-group {{#if afFieldIsInvalid name='details'}}has-error {{/if}}" >
-                          {{> afQuickField name='details'  rows=5}}
-                          <span class="help-block">{{afFieldMessage name='details'}}</span>
-                        </div>
-                    </fieldset>
-                    <button type="submit" class="btn btn-primary">Update Proposal</button>
-
-                  {{/autoForm}}
-
-              </div>
-            </div>
-            </section>
+          {{> Template.dynamic template="editProposalDetails"}}
         {{else}}
           <section class="content-header">
-            <h1>
-              {{refNo}}
-            </h1>
-            <ol class="breadcrumb">
-              <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li><a href="{{pathFor 'view-proposals'}}"><i class="fa fa-dashboard"></i> View Proposals</a></li>
-              <li class="active">View Proposal</li>
-            </ol>
+          <h1>
+            {{refNo}}
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{pathFor 'view-proposals'}}"><i class="fa fa-dashboard"></i> View Proposals</a></li>
+            <li class="active">View Proposal</li>
+          </ol>
           </section>
-
-          <section class="content">
-            <div class="box box-primary">
-              <div class="box-header with-border">
-                <h3 class="box-title">{{status}}</h3>
-                {{#if alreadyPublished}}
-                  <div class="btn-group pull-right">
-                    <a href="#viewPublishedDetails" class="btn btn-flat btn-sm btn-default ">View Selected Service Providers</a>
-                    <a href="#" class="btn btn-flat btn-sm btn-default">View Responses</a>
-                    <a href="#" class="btn btn-flat btn-sm btn-danger">Withdraw Proposal</a>
-                  </div>  
-                {{/if}}
-                {{#if isReviewApproveButtonRequired}}
-                  <div class="btn-group pull-right">
-                    <button class="btn btn-flat btn-sm btn-success approve">Approve for publish</button>
-                    <button class="btn btn-flat btn-sm btn-danger reject">Reject with comment</button>
-                  </div>  
-                {{/if}}   
-
-                {{#if isSubmitForReviewRequired}}
-                  <div class="btn-group pull-right">
-                    <button class="btn btn-flat btn-sm btn-default edit">Edit Proposal</button>
-                    <button class="btn btn-flat btn-sm btn-default submitForReview">Submit For Review</button>
-                    <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-sm btn-danger">Proceed to Publish</a>
-                  </div>
-                {{/if}}
-
-                {{#if isPublishLinkRequired}}
-                  <div class="btn-group pull-right">
-                  <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-sm btn-success">Proceed to Publish</a>
-                  </div>
-                {{/if}}
-
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                {{flash}}
-                <strong>Summary</strong>
-                <p class="text-muted">
-                  {{summary}}
-                </p>
-
-                <hr>
-
-                <strong>Detailed Description</strong>
-                <p class="text-muted">{{details}}</p>
-
-                <hr>
-
-                <strong>Created on</strong>
-                <p class="text-muted">{{createdAt}}</p>
-                <hr>
-
-                <strong>Created By</strong>
-                <p class="text-muted">{{this.creator.profile.name}}</p>
-                <hr>
-                <strong>Employee Details (Refer File Attached)</strong>
-                <p class="text-muted"><a href="{{empDetailsAttach.url download=true}}" target="_parent">{{empDetailsAttach.name}}</a></p>
-                <hr>
-                <strong>Previous Claims History Available?</strong>
-                {{#if equals prevClaimsHistoryApplicable 'Yes'}}
-                  <p class="text-muted">{{prevClaimsHistoryApplicable}}</p>
-                  <hr>
-                  <strong>Previous Claims History Attachment</strong>
-                  <p class="text-muted"><a href="{{prevClaimsHistory.url download=true}}" target="_parent">{{prevClaimsHistory.name}}</a></p>
-                {{else}}
-                  <p class="text-muted">No</p>
-                {{/if}}
-              </div><!-- /.box-body -->
-              <div class="box-footer">
-              </div>
-            </div>
-            {{#if alreadyPublished}}
-            <div class="box box-info" id="viewPublishedDetails">
-              <div class="box-header with-border">
-                <h3 class="box-title">Published to following service providers</h3>
-              </div>
-              <div class="box-body  table-responsive">
-                <table class="table table-hover table-bordered table-striped">
-                    <tr>
-                      <th width="30%">Service Provider Name</th>
-                      <th width="40%">Address</th>
-                      <th width="30%">URL</th>
-                  </tr>
-                  {{#each listOfServiceProvidersSelected}}
-                    <tr>
-                      <td>{{name}}</td>
-                      <td>{{address}}</td>
-                      <td><a href="{{url}}" target="_blank">{{url}}</a></td>
-                    </tr>
-                  {{/each}}
-                </table>
-                
-              </div>
-
-
-            </div>
-            {{/if}}
-          </section><!-- /.content -->
+          {{#if isServiceProvider}}
+            {{> Template.dynamic template="viewProposalDetailsAsSP"}}
+          {{else}}
+            {{> Template.dynamic template="viewProposalDetailsAsClient"}}
+          {{/if}}
         {{/if}}
       </div><!-- /.content-wrapper -->
 </template>
+
+<template name="editProposalDetails">
+  <section class="content-header">
+    <h1>
+      Edit Proposal
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="{{pathFor 'view-proposals'}}"><i class="fa fa-dashboard"></i> View Proposals</a></li>
+      <li class="active">Edit Proposal Details</li>
+    </ol>
+  </section>
+
+  <section class="content">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{status}}</h3>
+        <button class="btn btn-flat btn-sm btn-warning cancelEdit pull-right">Cancel</button>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+          {{flash}}
+          {{#autoForm doc=this collection="Proposals" id="updateProposalForm123" type="update"}}
+            <fieldset>
+                  {{> afQuickField name='status' readonly=true}}
+                <div class="form-group {{#if afFieldIsInvalid name='incType'}}has-error {{/if}}" >
+                  {{> afQuickField name='incType' autofocus='' options=incTypes}}
+                  <span class="help-block">{{afFieldMessage name='summary'}}</span>
+                </div>
+
+                <div class="form-group {{#if afFieldIsInvalid name='summary'}}has-error {{/if}}" >
+                  {{> afQuickField name='summary'}}
+                  <span class="help-block">{{afFieldMessage name='summary'}}</span>
+                </div>
+                <div class="form-group {{#if afFieldIsInvalid name='details'}}has-error {{/if}}" >
+                  {{> afQuickField name='details'  rows=5}}
+                  <span class="help-block">{{afFieldMessage name='details'}}</span>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Update Proposal</button>
+          {{/autoForm}}
+      </div>
+    </div>
+  </section>
+</template>
+
+<template name="viewProposalDetailsAsSP">
+</template>
+
+<template name="viewProposalDetailsAsClient">
+  <section class="content">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{status}}</h3>
+        {{#if alreadyPublished}}
+          <div class="btn-group pull-right">
+            <a href="#viewPublishedDetails" class="btn btn-flat btn-sm btn-default ">View Selected Service Providers</a>
+            <a href="#" class="btn btn-flat btn-sm btn-default">View Responses</a>
+            <a href="#" class="btn btn-flat btn-sm btn-danger">Withdraw Proposal</a>
+          </div>  
+        {{/if}}
+        {{#if isReviewApproveButtonRequired}}
+          <div class="btn-group pull-right">
+            <button class="btn btn-flat btn-sm btn-success approve">Approve for publish</button>
+            <button class="btn btn-flat btn-sm btn-danger reject">Reject with comment</button>
+          </div>  
+        {{/if}}   
+
+        {{#if isPublishLinkRequired}}
+          <div class="btn-group pull-right">
+          <a href="/publish/Proposal/{{_id}}" class="btn btn-flat btn-sm btn-danger">Proceed to Publish</a>
+          </div>
+        {{/if}}
+
+        {{#if isSubmitForReviewRequired}}
+          <div class="btn-group pull-right">
+            <button class="btn btn-flat btn-sm btn-default edit">Edit Proposal</button>
+            <button class="btn btn-flat btn-sm btn-default submitForReview">Submit For Review</button>
+          </div>
+        {{/if}}
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        {{flash}}
+        <strong>Summary</strong>
+        <p class="text-muted">
+          {{summary}}
+        </p>
+
+        <hr>
+
+        <strong>Detailed Description</strong>
+        <p class="text-muted">{{details}}</p>
+
+        <hr>
+
+        <strong>Created on</strong>
+        <p class="text-muted">{{createdAt}}</p>
+        <hr>
+
+        <strong>Created By</strong>
+        <p class="text-muted">{{this.creator.profile.name}}</p>
+        <hr>
+        <strong>Employee Details (Refer File Attached)</strong>
+        <p class="text-muted"><a href="{{empDetailsAttach.url download=true}}" target="_parent">{{empDetailsAttach.name}}</a></p>
+        <hr>
+        <strong>Previous Claims History Available?</strong>
+        {{#if equals prevClaimsHistoryApplicable 'Yes'}}
+          <p class="text-muted">{{prevClaimsHistoryApplicable}}</p>
+          <hr>
+          <strong>Previous Claims History Attachment</strong>
+          <p class="text-muted"><a href="{{prevClaimsHistory.url download=true}}" target="_parent">{{prevClaimsHistory.name}}</a></p>
+        {{else}}
+          <p class="text-muted">No</p>
+        {{/if}}
+      </div><!-- /.box-body -->
+      <div class="box-footer">
+      </div>
+    </div>
+    {{#if alreadyPublished}}
+    <div class="box box-info" id="viewPublishedDetails">
+      <div class="box-header with-border">
+        <h3 class="box-title">Published to following service providers</h3>
+      </div>
+      <div class="box-body  table-responsive">
+        <table class="table table-hover table-bordered table-striped">
+            <tr>
+              <th width="30%">Service Provider Name</th>
+              <th width="40%">Address</th>
+              <th width="30%">URL</th>
+          </tr>
+          {{#each listOfServiceProvidersSelected}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{address}}</td>
+              <td><a href="{{url}}" target="_blank">{{url}}</a></td>
+            </tr>
+          {{/each}}
+        </table>
+        
+      </div>
+
+
+    </div>
+    {{/if}}
+  </section><!-- /.content -->
+
+</template>
+

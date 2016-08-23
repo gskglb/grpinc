@@ -38,18 +38,19 @@
             <ul class="sidebar-menu">
 
                 <li class="header">Messages</li>
-                {{#if showCompanySection}}
+                <!--{{#if showCompanySection}} -->
                 <li><a href="{{ pathFor 'companyInbox' }}"><span>Inbox</span></a></li>
                 <li><a href="#"><span>Outbox</span></a></li>
                 <li><a href="#"><span>Trash</span></a></li>
+                <!-- {{/if}} -->
+
+                {{#if showCompanySection}}
+                    <li class="header">Services</li>
+                    <li><a href="{{ pathFor 'view-proposals' }}"><span>View Proposals</span></a></li>
+                    {{#if isInRole 'create'}}
+                        <li><a href="{{ pathFor 'create-proposal' }}"><span>Create Proposal</span></a></li>
+                    {{/if}}    
                 {{/if}}
-
-                <li class="header">Services</li>
-                <li><a href="{{ pathFor 'view-proposals' }}"><span>View Proposals</span></a></li>
-                {{#if isInRole 'create'}}
-                    <li><a href="{{ pathFor 'create-proposal' }}"><span>Create Proposal</span></a></li>
-                {{/if}}    
-
                 <li class="header">Help</li>
                 <li><a href="#"><span>Quick Tips</span></a></li>
                 <li><a href="#"><span>Guide / Tutorial</span></a></li>

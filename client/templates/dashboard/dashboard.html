@@ -5,7 +5,6 @@
         <section class="content-header">
           <h1>
             Dashboard
-            <small>Access all functionalities from here</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -15,19 +14,134 @@
 
         <!-- Main content -->
         <section class="content">
-          <div class="error-page">
-            <h2 class="headline text-yellow"><i class="fa fa-warning text-yellow"></i></h2>
-            <div class="error-content">
-              <h3>Under Construction</h3>
-              <p>
-                User dashboard will appear here.
-              </p>
-              <p>
-                Meanwhile, please try services section from side menu.                
-              </p>
-              
-            </div><!-- /.error-content -->
-          </div><!-- /.error-page -->
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua">
+                  <i class="fa  fa-send"></i>
+                </span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Notifications</span>
+                  <span class="info-box-number">You have {{notificationCount}} notification(s)</span>
+                </div>
+              </div>
+            </div><!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-tasks"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Tasks</span>
+                  <span class="info-box-number">You have {{taskCount}} open tasks</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-wrench"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">User Profile</span>
+                  <span class="info-box-number">Manage your profile</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-support (alias)"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Support</span>
+                  <span class="info-box-number"><small>guru4raj@gmail.com</small></span>
+                  <span class="info-box-number">1800 xxx xxxx</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                  <h2 class="box-title">Help Section (How-Tos) for Client</h2>
+                  <small>Click to see solution</small>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="box-group" id="accordion">
+                    <div class="panel box box-danger">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#ccollapseOne">
+                            How to create a proposal?
+                          </a>
+                        </h4>
+                      </div>
+                      <div style="height: 0px;" aria-expanded="false" id="ccollapseOne" class="panel-collapse collapse">
+                        <div class="box-body">
+                          Create a proposal's detailed description here. 
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel box box-danger">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a aria-expanded="false" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#ccollapseTwo">
+                            How to submit proposal for review?
+                          </a>
+                        </h4>
+                      </div>
+                      <div aria-expanded="false" id="ccollapseTwo" class="panel-collapse collapse">
+                        <div class="box-body">
+                          Some detailed description comes here 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /.box-body -->
+              </div>
+            </div>
+           <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                  <h2 class="box-title">Help Section (How-Tos) for Service Providers</h2>
+                  <small>Click to see solution</small>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="box-group" id="accordion">
+                    <div class="panel box box-danger">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#scollapseOne">
+                            How to view proposal submitted by customer?
+                          </a>
+                        </h4>
+                      </div>
+                      <div style="height: 0px;" aria-expanded="false" id="scollapseOne" class="panel-collapse collapse">
+                        <div class="box-body">
+                          Some detailed steps here.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel box box-danger">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a aria-expanded="false" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#scollapseTwo">
+                            How to submit the response?
+                          </a>
+                        </h4>
+                      </div>
+                      <div aria-expanded="false" id="scollapseTwo" class="panel-collapse collapse">
+                        <div class="box-body">
+                          Some detailed steps here.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /.box-body -->
+              </div>
+            </div>  
+          </div>
         </section>
       </div><!-- /.content-wrapper -->
 </template>

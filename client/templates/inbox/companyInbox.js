@@ -7,4 +7,12 @@ Template.companyInbox.helpers({
     if(this.status === "Open") return "danger";
     else if(this.status === "Closed") return "success";
    },
+
+   notifications : function(){
+   	return Notifications.find();
+   },
+
+   notificationBy : function(){
+   	return Meteor.users.findOne(this.createdBy);
+   }
 });

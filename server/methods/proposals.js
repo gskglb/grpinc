@@ -49,6 +49,19 @@ Meteor.methods({
     //console.log(proposal.refNo);
     CompanyInbox.remove({refNo : proposal.refNo});
     console.log("Proposal is ready for publish  " + proposalId);    
+    Notifications.insert({
+      refNo : proposal.refNo,
+      url : proposal._id,
+      to : proposal.createdBy,
+      type : "danger",
+      message : "Proposal is approved for publish",
+      comments : ""
+    }, function(error, result){
+      if(error){
+        console.log("Error " + error);
+        throw new Meteor.Error("Server error encountered.");
+      }      
+    });
 
   },
 
@@ -68,7 +81,7 @@ Meteor.methods({
     // 3. Send a notification to creater about the proposal rejection with comments
     Notifications.insert({
       refNo : proposal.refNo,
-      url : proposal.url,
+      url : proposal._id,
       to : proposal.createdBy,
       type : "danger",
       message : "Proposal is rejected",
@@ -84,7 +97,7 @@ Meteor.methods({
 
   publishProposal : function(proposalId, selectedServiceProviderList){
     // 1. Update proposal for status = Published and publishedToServiceProvider = list from session
-    //Proposals.update({_id : proposalId}, {$set : {'status' : "Published", 'publishedTo' : selectedServiceProviderList}});
+    Proposals.update({_id : proposalId}, {$set : {'status' : "Published", 'publishedTo' : selectedServiceProviderList}});
     
     // 2. Update Service providers with new request
     this.unblock();
@@ -109,8 +122,6 @@ Meteor.methods({
       });
 
     });
-
-
 
 
     // var name = "GroupAssurance";

@@ -123,17 +123,16 @@ Meteor.methods({
 
     });
 
-
-    // var name = "GroupAssurance";
-    // var email = "parimala.applabs@gmail.com";
-    // var message = "<Testing>New Proposal is published";
-    //   Meteor.Mailgun.send({
-    //     to: 'parimala.applabs@gmail.com',
-    //     from: name + ' <' + email + '>',
-    //     subject: 'New Proposal awaiting your response',
-    //     text: message,
-    //     html: Handlebars.templates['proposalPublishEmail']({siteURL: Meteor.absoluteUrl(), fromName: name, fromEmail: email, message: message})
-    //   });
+    var name = "GroupAssurance";
+    var email = "parimala.applabs@gmail.com";
+    var message = "<Testing>New Proposal is published";
+      Meteor.Mailgun.send({
+        to: 'guru4raj@gmail.com,asheeshsrivastava@gmail.com',
+        from: name + ' <' + email + '>',
+        subject: 'New Proposal awaiting your response',
+        text: message,
+        html: Handlebars.templates['proposalPublishEmail']({siteURL: Meteor.absoluteUrl(), fromName: name, fromEmail: email, message: message})
+      });
   },
 
 });

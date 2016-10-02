@@ -127,7 +127,7 @@ Meteor.methods({
     var email = "parimala.applabs@gmail.com";
     var message = "<Testing>New Proposal is published";
       Meteor.Mailgun.send({
-        to: 'guru4raj@gmail.com,asheeshsrivastava@gmail.com',
+        to: 'guru4raj@gmail.com',
         from: name + ' <' + email + '>',
         subject: 'New Proposal awaiting your response',
         text: message,

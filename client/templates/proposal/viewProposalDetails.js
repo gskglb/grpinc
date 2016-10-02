@@ -147,6 +147,23 @@ Template.editProposalDetails.events({
   },
 });
 
+Template.viewProposalDetailsAsSP.helpers({
+  empDetailsAttach: function () {
+    return EmpDetailsAttach.findOne({_id : this.empDetailsAttach});
+  },
+
+  prevClaimsHistory: function () {
+    return PreviousClaimsHistory.findOne({_id : this.prevClaimsHistory});
+  },
+});    
+
+Template.viewProposalDetailsAsSP.events({
+  'submit .new-quote' : function(event){
+    event.preventDefault();
+    console.log("Hey");
+  }
+});
+
 // End of edit section
 
 AutoForm.debug();

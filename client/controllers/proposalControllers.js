@@ -16,7 +16,10 @@ CreateProposalController = AppController.extend({
 // View Proposal List
 ViewProposalsController = AppController.extend({
   waitOn: function() {
-    return this.subscribe('getProposals');
+    return [
+      this.subscribe('userdata'),  
+      this.subscribe('getProposals'),
+    ];  
     this.ready();
   },
   data: {
@@ -32,10 +35,12 @@ ViewProposalDetailsController = AppController.extend({
   waitOn: function() {
     var proposalID = this.params.id;
     return [
-      Meteor.subscribe('empDetailsAttach',proposalID),
-      Meteor.subscribe('prevClaimsHistory',proposalID),
-      Meteor.subscribe('getProposalById',proposalID),
-      Meteor.subscribe('getPublisherDetailsForProposal',proposalID)
+      this.subscribe('userdata'),
+      this.subscribe('empDetailsAttach',proposalID),
+      this.subscribe('prevClaimsHistory',proposalID),
+      this.subscribe('getProposalById',proposalID),
+      this.subscribe('getPublisherDetailsForProposal',proposalID),
+      this.subscribe("getCompanyDetails"),
     ];
     this.ready();
   },

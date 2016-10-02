@@ -1,18 +1,9 @@
 // Get proposals  
 
-Meteor.publishComposite("getProposals", {
-	find : function () {
+Meteor.publish("getProposals", function () {
 		user = Meteor.users.findOne({_id: this.userId});
 		compId = user.organization.id;
 		return Proposals.find({'companyId' : compId}, {sort : {createdAt : -1}});
-	},
-	children : [
-		{
-			find : function(proposal){
-				return Meteor.users.find({_id : proposal.createdBy});
-			}
-		}
-	]
 });
 
 
